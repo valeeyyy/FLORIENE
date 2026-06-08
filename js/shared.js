@@ -33,7 +33,7 @@ function updateNavbarAuth() {
         .then(function(s) {
             if (!s.loggedIn) return;
             var dash = s.role === 'admin' ? 'admin.php' : 'profile.html';
-            var dashLabel = s.role === 'admin' ? 'Lihat Dashboard' : 'My Dashboard';
+            var dashLabel = s.role === 'admin' ? 'View Dashboard' : 'My Dashboard';
             var nama = s.nama || 'User';
             var cta = document.querySelector('.nav-cta');
             if (cta) {
