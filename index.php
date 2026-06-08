@@ -98,6 +98,14 @@
       $produk_result = $conn->query("SELECT * FROM produk WHERE id_kategori=$id_kat AND status='active' ORDER BY id_produk ASC");
       $icon = $icons[$icon_index % count($icons)];
       $icon_index++;
+
+      // Make the grid stretch to fill the container: never more columns than products (max 4)
+      $num_produk = $produk_result->num_rows;
+      $cols_md = $num_produk >= 2 ? 2 : 1;
+      $cols_lg = min(max($num_produk, 1), 4);
+      $grid_class = 'grid gap-4 grid-cols-1';
+      if ($cols_md > 1) $grid_class .= " min-[560px]:grid-cols-$cols_md";
+      if ($cols_lg > $cols_md) $grid_class .= " min-[860px]:grid-cols-$cols_lg";
     ?>
     <div class="cat-block">
       <div class="cat-head">
@@ -108,7 +116,7 @@
         </div>
       </div>
       <div class="cat-body">
-        <div class="grid gap-4 grid-cols-1 min-[560px]:grid-cols-2 min-[860px]:grid-cols-4">
+        <div class="<?= $grid_class ?>">
           <?php while ($p = $produk_result->fetch_assoc()): ?>
           <div class="prod-card">
             <div class="prod-img-wrap">
