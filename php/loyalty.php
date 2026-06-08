@@ -14,7 +14,13 @@ if ($aksi === 'redeem') {
     $warna = $conn->real_escape_string($_POST['warna'] ?? '');
 
     $loyalty = $conn->query("SELECT poin FROM loyalty_card WHERE id_user=$id_user")->fetch_assoc();
-    $poin = $loyalty ? (int) $loyalty['poin'] : 0;
+    $poin = 0; 
+
+    if ($loyalty) { 
+        $poin = (int) $loyalty['poin']; 
+    } else {
+        $poin = 0; 
+    }
 
     if ($poin < 10) {
         header("Location: ../profile.php?msg=redeem_fail");
