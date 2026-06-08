@@ -1,0 +1,3 @@
+VERCEL LINK (FRONT END ONLY): https://github.com/valeeyyy/FLORIENE_FRONT_END 
+VERCEL LINK (FRONT END + BACK END): https://github.com/valeeyyy/FLORIENE
+GITHUB: https://floriene-front-end.vercel.app/
