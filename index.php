@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
 </head>
 <body>
 
-<div id="navbar-root"></div>
+<?php $nav_active = 'home'; include 'php/navbar.php'; ?>
 <section class="hero" id="home">
   <div class="container">
     <div class="hero-inner">
@@ -99,7 +100,6 @@
       $icon = $icons[$icon_index % count($icons)];
       $icon_index++;
 
-      // Make the grid stretch to fill the container: never more columns than products (max 4)
       $num_produk = $produk_result->num_rows;
       $cols_md = $num_produk >= 2 ? 2 : 1;
       $cols_lg = min(max($num_produk, 1), 4);
@@ -285,36 +285,49 @@
       <div class="form-title">Order Form</div>
       <p class="form-sub">Select from our catalog below. All orders are picked up on campus - no delivery. We'll prepare it with love! 🌸</p>
 
-      <div id="order-form">
+      <?php if (($_GET['order'] ?? '') === 'error'): ?>
+      <div style="display:block;background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;">⚠️ Sorry, your order could not be saved. Please choose a product and quantity, then try again.</div>
+      <?php endif; ?>
+
+      <?php if (($_GET['order'] ?? '') === 'success'): ?>
+      <div class="form-ok" id="form-ok" style="display:block;">
+        <span class="ok-icon">🎉</span>
+        <h3>Order Received!</h3>
+        <p>Thank you, <strong><?= htmlspecialchars($_SESSION['nama'] ?? 'friend') ?></strong>!<br>
+        Your order has been received and will be processed shortly. We'll contact you via WhatsApp to confirm. 🌸</p>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">📍 Remember: pick up your order on campus.</p>
+      </div>
+      <?php else: ?>
+      <form id="order-form" method="POST" action="php/order.php">
         <div class="grid grid-cols-1 min-[860px]:grid-cols-2 gap-3">
           <div class="fg">
             <label for="f-nama">Full Name</label>
-            <input type="text" id="f-nama" placeholder="Your name..." required>
+            <input type="text" id="f-nama" name="nama" placeholder="Your name..." required>
           </div>
           <div class="fg">
             <label for="f-hp">WhatsApp Number</label>
-            <input type="tel" id="f-hp" placeholder="08xx xxxx xxxx" required>
+            <input type="tel" id="f-hp" name="nomor_hp" placeholder="08xx xxxx xxxx" required>
           </div>
         </div>
         <div class="fg">
           <label for="f-produk">Select Product</label>
-          <select id="f-produk" required>
+          <select id="f-produk" name="id_produk" required>
             <option value="">- Choose a product -</option>
           </select>
         </div>
         <div class="grid grid-cols-1 min-[860px]:grid-cols-2 gap-3">
           <div class="fg">
             <label for="f-qty">Quantity</label>
-            <input type="number" id="f-qty" min="1" value="1">
+            <input type="number" id="f-qty" name="jumlah" min="1" value="1">
           </div>
           <div class="fg">
             <label for="f-tgl">Pickup Date Needed</label>
-            <input type="date" id="f-tgl">
+            <input type="date" id="f-tgl" name="tanggal_pengiriman">
           </div>
         </div>
         <div class="fg">
           <label for="f-catatan">Notes (optional)</label>
-          <textarea id="f-catatan" rows="3" placeholder="Any special notes for your order..."></textarea>
+          <textarea id="f-catatan" name="catatan" rows="3" placeholder="Any special notes for your order..."></textarea>
         </div>
 
         <div id="price-preview" style="background:var(--pink-bg); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:14px;">
@@ -325,17 +338,10 @@
           <div style="font-size:11px; color:var(--muted); margin-top:4px;">📍 Campus pick-up only · No delivery</div>
         </div>
 
-        <button class="btn-submit" onclick="submitOrder()">🌸 Submit Order</button>
+        <button type="submit" class="btn-submit">🌸 Submit Order</button>
         <p class="form-privacy">🔒 Your data is kept safe and used only to process your order.</p>
-      </div>
-
-      <div class="form-ok" id="form-ok">
-        <span class="ok-icon">🎉</span>
-        <h3>Order Received!</h3>
-        <p>Thank you, <strong id="ok-name"></strong>!<br>
-        Your order has been received and will be processed shortly. We'll contact you via WhatsApp to confirm. 🌸</p>
-        <p style="font-size:12px; color:var(--muted); margin-top:12px;">📍 Remember: pick up your order on campus.</p>
-      </div>
+      </form>
+      <?php endif; ?>
     </div>
   </div>
 </section>
@@ -363,81 +369,36 @@ while ($row = $produk_for_js->fetch_assoc()) {
 <script src="js/shared.js"></script>
 <script src="js/script.js"></script>
 <script>
-  document.getElementById('navbar-root').innerHTML = renderNavbar('home');
-
   var produkList = <?= json_encode($produk_js_array) ?>;
 
   var selProduk = document.getElementById('f-produk');
-  produkList.forEach(function (p) {
-    var opt = document.createElement('option');
-    opt.value = p.id;
-    opt.textContent = p.nama + ' - ' + formatRp(p.harga);
-    selProduk.appendChild(opt);
-  });
+
+  function orderProduk(id) {
+    if (!selProduk) return;
+    selProduk.value = String(id);
+    hitungTotal();
+    document.getElementById('pesan').scrollIntoView({ behavior: 'smooth' });
+  }
 
   function hitungTotal() {
+    if (!selProduk) return;
     var id = parseInt(selProduk.value);
     var qty = parseInt(document.getElementById('f-qty').value) || 0;
     var p = produkList.find(function(x){ return x.id === id; });
     var total = p ? p.harga * qty : 0;
     document.getElementById('price-total').textContent = formatRp(total);
   }
-  selProduk.addEventListener('change', hitungTotal);
-  document.getElementById('f-qty').addEventListener('input', hitungTotal);
-  hitungTotal();
 
-  // Called from the "Order" button on each product card
-  function orderProduk(id) {
-    selProduk.value = String(id);
+  if (selProduk) {
+    produkList.forEach(function (p) {
+      var opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.nama + ' - ' + formatRp(p.harga);
+      selProduk.appendChild(opt);
+    });
+    selProduk.addEventListener('change', hitungTotal);
+    document.getElementById('f-qty').addEventListener('input', hitungTotal);
     hitungTotal();
-    document.getElementById('pesan').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  async function submitOrder() {
-    var nama = document.getElementById('f-nama').value.trim();
-    var hp   = document.getElementById('f-hp').value.trim();
-    var id   = parseInt(selProduk.value);
-    var qty  = parseInt(document.getElementById('f-qty').value) || 1;
-    var tgl  = document.getElementById('f-tgl').value;
-    var note = document.getElementById('f-catatan').value.trim();
-
-    var p = produkList.find(function (x) { return x.id === id; });
-    if (!nama || !hp || !p) {
-      alert('Please fill in your name, WhatsApp number, and choose a product first. 🌸');
-      return;
-    }
-
-    // Build notes with the contact info so admin has it (no dedicated columns for nama/hp)
-    var catatan = 'Contact: ' + nama + ' (' + hp + ')';
-    if (note) catatan += ' | Notes: ' + note;
-
-    var fd = new FormData();
-    fd.append('id_produk', id);
-    fd.append('jumlah', qty);
-    fd.append('tanggal_pengiriman', tgl);
-    fd.append('catatan', catatan);
-
-    var res;
-    try {
-      res = await fetch('php/order.php', { method: 'POST', body: fd }).then(function (r) { return r.json(); });
-    } catch (e) {
-      alert('Something went wrong. Please try again.');
-      return;
-    }
-
-    if (res.need_login) {
-      alert('Please login as a customer first to place an order. 🌸');
-      window.location.href = 'auth.html';
-      return;
-    }
-    if (!res.success) {
-      alert(res.message || 'Sorry, your order could not be saved. Please try again.');
-      return;
-    }
-
-    document.getElementById('ok-name').textContent = nama;
-    document.getElementById('order-form').style.display = 'none';
-    document.getElementById('form-ok').style.display = 'block';
   }
 </script>
 </body>

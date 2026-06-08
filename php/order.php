@@ -1,9 +1,8 @@
 <?php
 session_start();
-header('Content-Type: application/json');
 
 if (!isset($_SESSION['id_user'])) {
-    echo json_encode(['success' => false, 'need_login' => true, 'message' => 'Please login to place an order']);
+    header("Location: ../auth.html");
     exit();
 }
 
@@ -12,40 +11,40 @@ $id_user = (int) $_SESSION['id_user'];
 
 $id_produk = (int) ($_POST['id_produk'] ?? 0);
 $jumlah = (int) ($_POST['jumlah'] ?? 0);
+$nama = $conn->real_escape_string($_POST['nama'] ?? '');
+$hp = $conn->real_escape_string($_POST['nomor_hp'] ?? '');
 $tanggal = $conn->real_escape_string($_POST['tanggal_pengiriman'] ?? '');
-$catatan = $conn->real_escape_string($_POST['catatan'] ?? '');
+$note = trim($_POST['catatan'] ?? '');
 
 if ($id_produk <= 0 || $jumlah <= 0) {
-    echo json_encode(['success' => false, 'message' => 'Please select a product and quantity']);
+    header("Location: ../index.php?order=error#pesan");
     exit();
 }
 
-// Look up the real price from DB (never trust the client)
 $produk = $conn->query("SELECT nama_produk, harga FROM produk WHERE id_produk=$id_produk AND status='active'")->fetch_assoc();
 if (!$produk) {
-    echo json_encode(['success' => false, 'message' => 'Product not found']);
+    header("Location: ../index.php?order=error#pesan");
     exit();
 }
 
 $harga_satuan = (float) $produk['harga'];
 $subtotal = $harga_satuan * $jumlah;
 
-// Create the order header
+$catatan = "Contact: $nama ($hp)";
+if ($note !== '') {
+    $catatan .= ' | Notes: ' . $note;
+}
+$catatan = $conn->real_escape_string($catatan);
+
 $tanggal_sql = $tanggal ? "'$tanggal'" : 'NULL';
 $conn->query("INSERT INTO pesanan (id_user, status, total_harga, tanggal_pengiriman, catatan)
               VALUES ($id_user, 'pending', $subtotal, $tanggal_sql, '$catatan')");
 $id_pesanan = $conn->insert_id;
 
-// Create the order line item (this is what loyalty points are counted from)
 $conn->query("INSERT INTO pesanan_detail (id_pesanan, id_produk, jumlah, harga_satuan, subtotal)
               VALUES ($id_pesanan, $id_produk, $jumlah, $harga_satuan, $subtotal)");
 
-echo json_encode([
-    'success' => true,
-    'id_pesanan' => $id_pesanan,
-    'total' => $subtotal,
-    'message' => 'Order placed successfully! Your order is now pending.'
-]);
-
 $conn->close();
+header("Location: ../index.php?order=success#pesan");
+exit();
 ?>

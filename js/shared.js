@@ -27,32 +27,6 @@ function toggleNav() {
     document.getElementById('nav-links').classList.toggle('open');
 }
 
-function updateNavbarAuth() {
-    fetch('php/auth.php?aksi=status')
-        .then(function(r) { return r.json(); })
-        .then(function(s) {
-            if (!s.loggedIn) return;
-            var dash = s.role === 'admin' ? 'admin.php' : 'profile.html';
-            var dashLabel = s.role === 'admin' ? 'View Dashboard' : 'My Dashboard';
-            var nama = s.nama || 'User';
-            var cta = document.querySelector('.nav-cta');
-            if (cta) {
-                cta.innerHTML = '<span class="nav-greeting">Hi, ' + nama + '</span>'
-                    + '<a href="' + dash + '" class="btn btn-pink btn-sm">' + dashLabel + '</a>'
-                    + '<a href="php/auth.php?aksi=logout" class="btn btn-outline btn-sm">Logout</a>';
-            }
-            var ml = document.querySelector('.nav-mobile-login');
-            if (ml) {
-                ml.innerHTML = '<span style="display:block;padding:12px;color:var(--muted);font-size:13px;">Hi, ' + nama + '</span>'
-                    + '<a href="' + dash + '" style="display:block;">' + dashLabel + '</a>'
-                    + '<a href="php/auth.php?aksi=logout" style="display:block;">Logout</a>';
-            }
-        })
-        .catch(function() {});
-}
-
-document.addEventListener('DOMContentLoaded', updateNavbarAuth);
-
 window.addEventListener('scroll', function() {
     var nb = document.getElementById('navbar');
     if (nb) nb.classList.toggle('scrolled', window.scrollY > 10);

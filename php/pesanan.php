@@ -20,14 +20,12 @@ if ($aksi === 'delete') {
 } else {
     $status = $conn->real_escape_string($_POST['status'] ?? '');
 
-    // Validate status
     $valid_statuses = ['pending', 'processing', 'completed', 'cancelled'];
     if (!in_array($status, $valid_statuses)) {
         header("Location: ../admin.php?section=orders&msg=error");
         exit();
     }
 
-    // Get order details (incl. current status to avoid awarding points twice)
     $order = $conn->query("SELECT id_user, status FROM pesanan WHERE id_pesanan=$id")->fetch_assoc();
     if (!$order) {
         header("Location: ../admin.php?section=orders&msg=error");
@@ -36,11 +34,8 @@ if ($aksi === 'delete') {
     $id_user = $order['id_user'];
     $was_completed = ($order['status'] === 'completed');
 
-    // Update order status
     $result = $conn->query("UPDATE pesanan SET status='$status' WHERE id_pesanan=$id");
 
-    // Award loyalty points only when an order FIRST becomes completed.
-    // Points earned = total quantity of products in the order.
     if ($status === 'completed' && !$was_completed) {
         $detail_result = $conn->query("SELECT SUM(jumlah) as total_items FROM pesanan_detail WHERE id_pesanan=$id");
         $detail = $detail_result->fetch_assoc();

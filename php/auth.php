@@ -55,7 +55,7 @@ if ($result && $result->num_rows > 0) {
     if ($_SESSION['role'] === 'admin') {
         header("Location: ../admin.php");
     } else {
-        header("Location: ../profile.html");
+        header("Location: ../profile.php");
     }
     exit();
 }
