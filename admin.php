@@ -90,7 +90,7 @@ function badge($s)
 
     <div class="header">
         <div class="header-logo">
-            <img src="img/logo.png" alt="Floriene">
+            <img src="img/logo.jpeg" alt="Floriene">
             <span class="brand">Floriene</span>
             <span class="role-tag">Admin Panel</span>
         </div>

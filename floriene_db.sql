@@ -103,5 +103,5 @@ INSERT INTO produk (id_produk, id_kategori, nama_produk, warna, harga, deskripsi
 (6, 2, 'Everbloom Tulip (Baby Pink)', 'Baby Pink', 22000.00, 'Sweet and elegant single stem tulip in soft baby pink color', 'img/babypink.jpg', 'active'),
 (7, 2, 'Everbloom Tulip (Hot Pink)', 'Hot Pink', 22000.00, 'Bold and vibrant hot pink tulip single stem that never wilts', 'img/hotpink.jpg', 'active'),
 (8, 2, 'Everbloom Sunflower', 'Yellow', 25000.00, 'Bright and cheerful sunflower single stem, full of life and color', 'img/sunflower.jpg', 'active'),
-(9, 2, 'Everbloom Peony', 'Purple', 30000.00, 'Premium luxurious peony single stem in regal purple - a statement piece', 'img/peony.png', 'active')
+(9, 2, 'Everbloom Peony', 'Purple', 30000.00, 'Premium luxurious peony single stem in regal purple - a statement piece', 'img/peony.jpeg', 'active')
 ON DUPLICATE KEY UPDATE id_produk = id_produk;

@@ -23,7 +23,7 @@ function renderNavbar(activePage) {
   return (
     '<nav class="navbar" id="navbar">' +
     '<a href="index.html" class="nav-logo">' +
-    '<img src="img/logo.png" alt="Floriene">' +
+    '<img src="img/logo.jpeg" alt="Floriene">' +
     '<span class="nav-brand">Floriene</span>' +
     "</a>" +
     '<button class="nav-hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>' +
