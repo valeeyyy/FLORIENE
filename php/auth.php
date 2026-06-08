@@ -4,7 +4,7 @@ $aksi = $_REQUEST['aksi'] ?? '';
 
 if ($aksi === 'logout') {
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     exit();
 }
 

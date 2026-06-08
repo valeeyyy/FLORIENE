@@ -138,7 +138,7 @@ function status_class($s)
       <div class="order-list">
         <?php if (empty($orders)): ?>
         <div style="text-align:center; padding:28px; color:var(--muted); font-size:14px;">
-          No orders yet. <a href="index.php#pesan" style="color:var(--pink-dark);font-weight:700;">Place your first order!</a>
+          No orders yet. <a href="index.html#pesan" style="color:var(--pink-dark);font-weight:700;">Place your first order!</a>
         </div>
         <?php else: foreach ($orders as $o): ?>
         <div class="order-item">
@@ -258,9 +258,9 @@ function status_class($s)
 <footer class="footer">
   <div class="footer-brand">Floriene</div>
   <div class="footer-links">
-    <a href="index.php">Home</a>
+    <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="index.php#produk">Products</a>
+    <a href="index.html#produk">Products</a>
   </div>
   <p class="footer-copy">© 2026 Floriene Surabaya · Handcrafted with ❤️</p>
 </footer>

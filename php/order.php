@@ -17,13 +17,13 @@ $tanggal = $conn->real_escape_string($_POST['tanggal_pengiriman'] ?? '');
 $note = trim($_POST['catatan'] ?? '');
 
 if ($id_produk <= 0 || $jumlah <= 0) {
-    header("Location: ../index.php?order=error#pesan");
+    header("Location: ../index.html?order=error#pesan");
     exit();
 }
 
 $produk = $conn->query("SELECT nama_produk, harga FROM produk WHERE id_produk=$id_produk AND status='active'")->fetch_assoc();
 if (!$produk) {
-    header("Location: ../index.php?order=error#pesan");
+    header("Location: ../index.html?order=error#pesan");
     exit();
 }
 
@@ -45,6 +45,6 @@ $conn->query("INSERT INTO pesanan_detail (id_pesanan, id_produk, jumlah, harga_s
               VALUES ($id_pesanan, $id_produk, $jumlah, $harga_satuan, $subtotal)");
 
 $conn->close();
-header("Location: ../index.php?order=success#pesan");
+header("Location: ../index.html?order=success#pesan");
 exit();
 ?>

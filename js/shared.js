@@ -1,9 +1,9 @@
 function renderNavbar(activePage) {
   var links = [
-    { href: "index.php", label: "Home", key: "home" },
+    { href: "index.html", label: "Home", key: "home" },
     { href: "about.html", label: "About", key: "about" },
-    { href: "index.php#produk", label: "Products", key: "products" },
-    { href: "index.php#loyalty", label: "Loyalty", key: "loyalty" },
+    { href: "index.html#produk", label: "Products", key: "products" },
+    { href: "index.html#loyalty", label: "Loyalty", key: "loyalty" },
   ];
 
   var navItems = links
@@ -22,7 +22,7 @@ function renderNavbar(activePage) {
 
   return (
     '<nav class="navbar" id="navbar">' +
-    '<a href="index.php" class="nav-logo">' +
+    '<a href="index.html" class="nav-logo">' +
     '<img src="img/logo.png" alt="Floriene">' +
     '<span class="nav-brand">Floriene</span>' +
     "</a>" +

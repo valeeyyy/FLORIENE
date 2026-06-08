@@ -36,7 +36,7 @@ if ($aksi === 'update') {
     $conn->query("DELETE FROM pesanan WHERE id_user=$id");
     $conn->query("DELETE FROM user WHERE id_user=$id");
     session_destroy();
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     exit();
 }
 

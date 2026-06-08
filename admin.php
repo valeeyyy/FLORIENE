@@ -97,7 +97,7 @@ function badge($s)
         <div class="header-right">
             <span style="font-size:13px;color:#9a7080;">Hello,
                 <strong><?= htmlspecialchars($_SESSION['nama']) ?></strong></span>
-            <a href="index.php" target="_blank">View Website</a>
+            <a href="index.html" target="_blank">View Website</a>
             <a href="php/auth.php?aksi=logout" class="btn-logout">Logout</a>
         </div>
     </div>

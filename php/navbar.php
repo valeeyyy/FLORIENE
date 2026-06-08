@@ -4,10 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $nav_active = $nav_active ?? '';
 $nav_links = [
-    ['href' => 'index.php',        'label' => 'Home',     'key' => 'home'],
-    ['href' => 'about.html',       'label' => 'About',    'key' => 'about'],
-    ['href' => 'index.php#produk', 'label' => 'Products', 'key' => 'products'],
-    ['href' => 'index.php#loyalty','label' => 'Loyalty',  'key' => 'loyalty'],
+    ['href' => 'index.html',        'label' => 'Home',     'key' => 'home'],
+    ['href' => 'about.html',        'label' => 'About',    'key' => 'about'],
+    ['href' => 'index.html#produk', 'label' => 'Products', 'key' => 'products'],
+    ['href' => 'index.html#loyalty','label' => 'Loyalty',  'key' => 'loyalty'],
 ];
 $logged_in = isset($_SESSION['id_user']);
 $nav_nama  = $_SESSION['nama'] ?? 'User';
@@ -16,7 +16,7 @@ $dash_href  = $nav_role === 'admin' ? 'admin.php' : 'profile.php';
 $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
 ?>
 <nav class="navbar" id="navbar">
-  <a href="index.php" class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <img src="img/logo.png" alt="Floriene">
     <span class="nav-brand">Floriene</span>
   </a>
