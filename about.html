@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Floriene - The Story Behind the Blooms</title>
+  <meta name="description" content="Discover the story of Floriene - born during a semester break, driven by a love for flowers that never wilt. Handmade pipe cleaner flowers from Surabaya.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { corePlugins: { preflight: false } };</script>
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .team-section { padding:72px 0; background:var(--surface); }
+    .team-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:20px; margin-top:40px; }
+    @media(max-width:900px){ .team-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:600px){ .team-grid{grid-template-columns:repeat(2,1fr);} }
+
+    .team-card {
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 4px 24px rgba(232,120,159,.10);
+      border:1px solid var(--border);
+      transition:transform .3s ease, box-shadow .3s ease;
+      display:flex; flex-direction:column;
+    }
+    .team-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(232,120,159,.20); }
+
+    .team-photo {
+      width:100%;
+      aspect-ratio:3/4;
+      background:linear-gradient(145deg,#fce4ec,#f8bbd0,#f48fb1);
+      display:flex; align-items:center; justify-content:center;
+      font-size:56px;
+      position:relative;
+      overflow:hidden;
+    }
+    .team-photo::after {
+      content:'';
+      position:absolute; inset:0;
+      background:linear-gradient(to bottom, transparent 50%, rgba(232,120,159,.15) 100%);
+    }
+    .team-info {
+      padding:16px 14px;
+      background:#fff;
+    }
+    .team-name { font-size:14px; font-weight:800; color:var(--dark); line-height:1.3; margin-bottom:4px; }
+    .team-role {
+      display:inline-block;
+      font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase;
+      padding:3px 8px; border-radius:20px;
+      background:var(--pink-bg); color:var(--pink-dark);
+      border:1px solid rgba(232,120,159,.3);
+    }
+
+    .photo-1 { background:linear-gradient(145deg,#fce4ec,#f8bbd0); }
+    .photo-2 { background:linear-gradient(145deg,#f3e5f5,#e1bee7); }
+    .photo-3 { background:linear-gradient(145deg,#e3f2fd,#bbdefb); }
+    .photo-4 { background:linear-gradient(145deg,#e8f5e9,#c8e6c9); }
+    .photo-5 { background:linear-gradient(145deg,#fff3e0,#ffe0b2); }
+
+    .about-img-real { width:100%; height:100%; object-fit:cover; border-radius:20px; display:block; }
+    .about-img-box  { border-radius:20px; overflow:hidden; box-shadow:0 8px 40px rgba(232,120,159,.18); }
+
+    .loyalty-compare {
+      display:grid; grid-template-columns:1fr 1fr; gap:20px;
+      margin:28px 0 0;
+    }
+    @media(max-width:600px){ .loyalty-compare{grid-template-columns:1fr;} }
+    .lc-card {
+      border-radius:14px; padding:20px; border:1px solid var(--border);
+    }
+    .lc-card.digital  { background:linear-gradient(135deg,rgba(232,120,159,.08),rgba(232,120,159,.02)); }
+    .lc-card.physical { background:linear-gradient(135deg,rgba(155,74,122,.08),rgba(155,74,122,.02)); }
+    .lc-card-icon { font-size:28px; margin-bottom:10px; }
+    .lc-card-title { font-size:14px; font-weight:800; color:var(--dark); margin-bottom:6px; }
+    .lc-card-desc  { font-size:12px; color:var(--muted); line-height:1.8; }
+  </style>
+</head>
+<body>
+
+<div id="navbar-root"></div>
+
+<section class="about-hero">
+  <div class="container">
+    <div class="about-pill">🌸 Est. 2026 · Surabaya · Handmade with Love</div>
+    <h1 class="about-h1">
+      The Story of <span class="accent">Floriene</span>
+    </h1>
+    <p class="about-p">
+      A little idea born from free time, a love for flowers, and a simple concern - that real flowers fade too soon.
+    </p>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-box">
+        <img src="img/about_how_started.jpeg" alt="How Floriene Started - crafting pipe cleaner flowers at a desk" class="about-img-real">
+      </div>
+      <div class="about-text">
+        <span class="sec-label">How It Started</span>
+        <h2>A Holiday, A Hook, and A Dream 🧶</h2>
+        <p>
+          Floriene was born during the semester break between <strong>Semester 1 and Semester 2</strong> - a stretch of free time that could have been spent doing nothing. But for the founders, <em>nganggur</em> (idling around) wasn't really an option.
+        </p>
+        <p>
+          With colorful pipe cleaners on the table, one flower became two, two became ten, and ten became a small collection that friends started noticing and asking about.
+        </p>
+        <div class="about-highlight">
+          "I just wanted to make something beautiful with my hands during the break. I never expected it would turn into something people actually wanted to buy."
+        </div>
+        <p>
+          What started as a holiday hobby quickly became a passion project - and eventually, <strong>Floriene</strong> was born.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section alt">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="sec-label">The Concern</span>
+        <h2>Real Flowers Are Beautiful - But They Don't Last 🥀</h2>
+        <p>
+          We've all been there: a beautiful bouquet on the table, fresh and vibrant on day one. By day three, petals begin to fall. By the end of the week, it's gone.
+        </p>
+        <p>
+          The founders noticed this everyday concern in the people around them - friends who wanted to give flowers but felt sad that they would wilt so quickly, and recipients who wished their gift could last longer.
+        </p>
+        <div class="about-highlight">
+          "Flowers are such a meaningful gift, but watching them wilt so fast always felt a little heartbreaking. I thought - what if I could make flowers that stay beautiful, forever?"
+        </div>
+        <p>
+          That thought sparked everything. Pipe cleaner flowers don't wilt. They don't need water. They never shed petals. They sit on a shelf, hang on a bag, or rest in a vase - forever as beautiful as the day they were made.
+        </p>
+      </div>
+      <div class="about-img-box">
+        <img src="img/about_the_concern.png" alt="The Concern - wilting real flowers vs lasting Floriene handmade flowers" class="about-img-real">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <div class="sec-head-center">
+      <span class="sec-label">Our Journey</span>
+      <h2 class="sec-title">How Floriene Grew 🌱</h2>
+      <p class="sec-sub">From a quiet holiday project to a growing handmade flower brand in Surabaya.</p>
+    </div>
+    <div style="max-width:600px; margin:0 auto;">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Late 2025 - Semester 1 Ends</div>
+          <div class="tl-title">The Holiday Begins 🏖️</div>
+          <div class="tl-desc">Semester 1 wraps up. A long holiday stretches ahead. The team picks up pipe cleaners for the first time and starts experimenting with shapes.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Early 2026 - The Break</div>
+          <div class="tl-title">First Flowers Are Made 🌸</div>
+          <div class="tl-desc">Small pipe cleaner flowers start taking shape - lily keychains, tulips, sunflowers. Friends and family spot them and immediately ask to buy.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">February 2026</div>
+          <div class="tl-title">Floriene Is Born 🎀</div>
+          <div class="tl-desc">The brand gets a name, a logo, and a mission: to make beautiful, lasting flowers that anyone can give and everyone can cherish.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Semester 2 - 2026</div>
+          <div class="tl-title">Growing While Studying 📚</div>
+          <div class="tl-desc">Classes resume, but Floriene keeps growing. Orders come in. The Bloomies Keychain and Everbloom Single Stem collections launch. 30+ happy customers.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Now &amp; Beyond</div>
+          <div class="tl-title">Still Blooming ✨</div>
+          <div class="tl-desc">Floriene continues to grow - one handmade flower at a time. New colors, new designs, and a loyal community of customers who love flowers that last.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section alt">
+  <div class="container">
+    <div class="sec-head-center">
+      <span class="sec-label">Our Values</span>
+      <h2 class="sec-title">What Floriene Stands For</h2>
+      <p class="sec-sub">Three core beliefs that guide every flower we make.</p>
+    </div>
+    <div class="grid grid-cols-1 min-[680px]:grid-cols-2 min-[900px]:grid-cols-3 gap-5">
+      <div class="value-card">
+        <div class="value-icon">❤️</div>
+        <h3>Made with Love</h3>
+        <p>Every single flower is shaped by hand - pipe cleaner by pipe cleaner. No machines, no shortcuts. Just care and intention in every twist.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">♾️</div>
+        <h3>Forever Beautiful</h3>
+        <p>Unlike real flowers, our pipe cleaner blooms never wilt, never fade, and never need water. A gift that lasts as long as the memory it represents.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎀</div>
+        <h3>Kawaii Packaging</h3>
+        <p>Every order is wrapped in cute, thoughtful packaging - making the unboxing experience as joyful as the flower itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <div class="sec-head-center">
+      <span class="sec-label">Loyalty Program</span>
+      <h2 class="sec-title">Digital + Physical Loyalty Card 🎀</h2>
+      <p class="sec-sub">Floriene offers <strong>two complementary ways</strong> to track your loyalty points - the digital card in your account and the physical stamp card. Both work together so your points are never lost.</p>
+    </div>
+
+    <div class="grid grid-cols-1 min-[600px]:grid-cols-2 gap-5 mt-7">
+      <div class="lc-card digital">
+        <div class="lc-card-icon">📱</div>
+        <div class="lc-card-title">Digital Loyalty Card</div>
+        <div class="lc-card-desc">
+          Your loyalty points are <strong>automatically tracked</strong> in the Floriene system every time your order is marked as completed by admin. You can always check your point balance anytime through your <a href="profile.html" style="color:var(--pink-dark);font-weight:700;">Profile</a> page - no need to bring anything, no risk of losing it.
+          <br><br>
+          <strong>Best for:</strong> Instant tracking, never forgetting how many points you have, and redeeming rewards hassle-free.
+        </div>
+      </div>
+      <div class="lc-card physical">
+        <div class="lc-card-icon">💳</div>
+        <div class="lc-card-title">Physical Loyalty Card</div>
+        <div class="lc-card-desc">
+          The physical card is a <strong>tangible stamp card</strong> that gets stamped each time you make a purchase at campus. It's a fun collectible that you can hold, carry, and show off - and it serves as a <strong>backup verification</strong> alongside the digital system.
+          <br><br>
+          <strong>Best for:</strong> Campus transactions, showing proof of your loyalty in person, and collecting as a cute Floriene keepsake!
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:24px; padding:16px; background:var(--pink-bg); border-radius:12px; border:1px solid var(--border); font-size:13px; color:var(--muted); max-width:600px; margin-left:auto; margin-right:auto;">
+      🌸 Both cards track the <strong>same loyalty program</strong>. Digital keeps you updated automatically, physical gives you a fun collectible - together, they make sure your rewards are always safe!
+    </div>
+
+    <div class="loyalty-card-grid" style="margin-top:40px;">
+      <div>
+        <div class="lcard-frame"><img src="img/loyaltyfront.png" alt="Floriene Loyalty Card Front"></div>
+        <p class="lcard-cap">Physical Card : Front</p>
+      </div>
+      <div>
+        <div class="lcard-frame"><img src="img/loyaltyback.jpg" alt="Floriene Loyalty Card Back"></div>
+        <p class="lcard-cap">Physical Card : Back</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="sec-head-center">
+      <span class="sec-label">Our Team</span>
+      <h2 class="sec-title">The People Behind Floriene</h2>
+      <p class="sec-sub">Five passionate creators from Universitas Ciputra Surabaya who built Floriene from a semester break into a blooming brand.</p>
+    </div>
+    <div class="grid grid-cols-2 min-[600px]:grid-cols-3 min-[900px]:grid-cols-5 gap-5 mt-10">
+
+      <div class="team-card">
+        <div class="team-photo photo-1"><img src="img/Christa Caitlyn Wonohadidjojo.jpg" alt="Christa Caitlyn Wonohadidjojo" class="about-img-real"></div>
+        <div class="team-info">
+          <div class="team-name">Christa Caitlyn Wonohadidjojo</div>
+          <span class="team-role">CEO</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo photo-2"><img src="img/Marsha Valerie Wibowo.jpg" alt="Marsha Valerie Wibowo" class="about-img-real"></div>
+        <div class="team-info">
+          <div class="team-name">Marsha Valerie Wibowo</div>
+          <span class="team-role">CMO</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo photo-3"><img src="img/Gavin Gunawan.jpg" alt="Gavin Gunawan" class="about-img-real"></div>
+        <div class="team-info">
+          <div class="team-name">Gavin Gunawan</div>
+          <span class="team-role">CMO</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo photo-4"><img src="img/Jonathan Kevin Devano.jpg" alt="Jonathan Kevin Devano" class="about-img-real"></div>
+        <div class="team-info">
+          <div class="team-name">Jonathan Kevin</div>
+          <span class="team-role">CFO</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo photo-5"><img src="img/Cavin Amadeus.jpg" alt="Cavin Amadeus" class="about-img-real"></div>
+        <div class="team-info">
+          <div class="team-name">Cavin Amadeus</div>
+          <span class="team-role">COO</span>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center; font-size:12px; color:var(--muted); margin-top:20px; font-style:italic;">
+      🎓 Universitas Ciputra Surabaya, Class A, 2026
+    </p>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <img src="img/logo.png" alt="Floriene" class="cta-logo">
+  <div class="cta-label">Ready to Own a Forever Flower?</div>
+  <div class="cta-h2">Shop the Collection</div>
+  <p class="cta-p">Explore our handmade pipe cleaner flowers - Bloomies Keychains and Everbloom Single Stems. Made with love, picked up on campus.</p>
+  <a href="index.php#produk" class="btn btn-white">🌷 View Products</a>
+  <p class="cta-footnote">
+    <strong>Made by Order</strong> &nbsp;·&nbsp;
+    <strong>Campus Pick-Up</strong> &nbsp;·&nbsp;
+    <strong>Kawaii</strong> Packaging
+  </p>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">Floriene</div>
+  <div class="footer-links">
+    <a href="index.php">Home</a>
+    <a href="about.html">About</a>
+    <a href="index.php#produk">Products</a>
+    <a href="auth.html">Login</a>
+  </div>
+  <p class="footer-copy">© 2026 Floriene Surabaya · Handcrafted with ❤️</p>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+  document.getElementById('navbar-root').innerHTML = renderNavbar('about');
+</script>
+</body>
+</html>
