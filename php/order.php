@@ -35,10 +35,16 @@ if ($note !== '') {
     $catatan .= ' | Notes: ' . $note;
 }
 $catatan = $conn->real_escape_string($catatan);
+\
+if ($tanggal) {
+    $tanggal_sql = "'$tanggal'"; 
+} else {
+    $tanggal_sql = 'NULL'; 
+}
 
-$tanggal_sql = $tanggal ? "'$tanggal'" : 'NULL';
 $conn->query("INSERT INTO pesanan (id_user, status, total_harga, tanggal_pengiriman, catatan)
               VALUES ($id_user, 'pending', $subtotal, $tanggal_sql, '$catatan')");
+
 $id_pesanan = $conn->insert_id;
 
 $conn->query("INSERT INTO pesanan_detail (id_pesanan, id_produk, jumlah, harga_satuan, subtotal)
