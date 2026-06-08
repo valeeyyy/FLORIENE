@@ -1,0 +1,8 @@
+{
+  // index.html, about.html and auth.html run PHP via .htaccess (AddType ... .html),
+  // so treat .html as PHP here. This stops VS Code's HTML validator from flagging
+  // the embedded <?php ?> / <?= ?> tags as errors.
+  "files.associations": {
+    "*.html": "php"
+  }
+}
