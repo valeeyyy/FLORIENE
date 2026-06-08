@@ -1,6 +1,3 @@
-# Run PHP inside .html files so index.html can use PHP (sessions, DB-driven catalog).
-# Required because the homepage was merged from index.php into index.html.
 AddType application/x-httpd-php .html .htm
 
-# Serve index.html as the directory default (e.g. http://localhost/FLORIENE/)
 DirectoryIndex index.html
