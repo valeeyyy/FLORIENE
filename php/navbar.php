@@ -2,7 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-$nav_active = $nav_active ?? '';
+if (isset($nav_active)) {
+    $nav_active = $nav_active;
+} else {
+    $nav_active = '';
+}
 $nav_links = [
     ['href' => 'index.html',        'label' => 'Home',     'key' => 'home'],
     ['href' => 'about.html',        'label' => 'About',    'key' => 'about'],
@@ -22,9 +26,37 @@ $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
   </a>
   <button class="nav-hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="nav-links">
-    <?php foreach ($nav_links as $l): ?>
-      <li><a href="<?= $l['href'] ?>" class="<?= $nav_active === $l['key'] ? 'active' : '' ?>"><?= $l['label'] ?></a></li>
-    <?php endforeach; ?>
+    <?php
+    $class_home = '';
+    if ($nav_active === 'home') {
+        $class_home = 'active';
+    }
+    ?>
+    <li><a href="index.html" class="<?php echo $class_home; ?>">Home</a></li>
+
+    <?php
+    $class_about = '';
+    if ($nav_active === 'about') {
+        $class_about = 'active';
+    }
+    ?>
+    <li><a href="about.html" class="<?php echo $class_about; ?>">About</a></li>
+
+    <?php
+    $class_products = '';
+    if ($nav_active === 'products') {
+        $class_products = 'active';
+    }
+    ?>
+    <li><a href="index.html#produk" class="<?php echo $class_products; ?>">Products</a></li>
+
+    <?php
+    $class_loyalty = '';
+    if ($nav_active === 'loyalty') {
+        $class_loyalty = 'active';
+    }
+    ?>
+<li><a href="index.html#loyalty" class="<?php echo $class_loyalty; ?>">Loyalty</a></li>
     <?php if ($logged_in): ?>
       <li class="nav-mobile-login">
         <span style="display:block;padding:12px;color:var(--muted);font-size:13px;">Hi, <?= htmlspecialchars($nav_nama) ?></span>
