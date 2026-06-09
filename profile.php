@@ -36,9 +36,18 @@ $banner = $banner_map[$msg] ?? null;
 
 function fmt_date($s)
 {
-    if (!$s) return '-';
+    if (!$s) {
+        return '-';
+    }
+
     $t = strtotime($s);
-    return $t ? date('d M Y', $t) : htmlspecialchars($s);
+
+    if ($t) {
+        return date('d M Y', $t);
+        
+    } else {
+        return htmlspecialchars($s);
+    }
 }
 function status_class($s)
 {
@@ -63,13 +72,27 @@ function status_class($s)
 
 <?php $nav_active = 'profile'; include 'php/navbar.php'; ?>
 
-<?php if ($banner): ?>
+<?php 
+if ($banner) { 
+
+    if ($banner[0] === 'success') {
+        $style_warna = 'background:#d1fae5; color:#065f46;';
+    } else {
+        $style_warna = 'background:#fee2e2; color:#991b1b;';
+    }
+?>
+
 <div style="max-width:960px;margin:90px auto 0;padding:0 20px;">
-  <div style="padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;<?= $banner[0] === 'success' ? 'background:#d1fae5;color:#065f46;' : 'background:#fee2e2;color:#991b1b;' ?>">
-    <?= htmlspecialchars($banner[1]) ?>
+  <div style="padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600; <?php echo $style_warna; ?>">
+    
+    <?php echo htmlspecialchars($banner[1]); ?>
+    
   </div>
 </div>
-<?php endif; ?>
+
+<?php 
+}
+?>
 
 <div class="profile-hero" id="profile-hero">
   <div class="profile-avatar" id="profile-av">👤</div>
