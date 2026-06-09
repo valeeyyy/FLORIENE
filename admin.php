@@ -68,7 +68,18 @@ function badge($s)
         'active' => 'b-green',
         'inactive' => 'b-gray',
     ];
-    return '<span class="badge ' . ($map[$s] ?? 'b-gray') . '">' . htmlspecialchars($s) . '</span>';
+
+    if (isset($map[$s])) {
+        $warna = $map[$s]; 
+    } else {
+        $warna = 'b-gray'; 
+    }
+
+    $teks_aman = htmlspecialchars($s);
+
+    $hasil_html = '<span class="badge ' . $warna . '">' . $teks_aman . '</span>';
+
+    return $hasil_html;
 }
 ?>
 <!DOCTYPE html>

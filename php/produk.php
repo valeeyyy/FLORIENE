@@ -42,7 +42,11 @@ if ($aksi === 'add') {
     $status = $conn->real_escape_string($_POST['status'] ?? 'active');
     $id_kategori = (int) ($_POST['id_kategori'] ?? 0);
     $url_foto = upload_foto($conn);
-    $foto_sql = $url_foto ? ", url_foto_produk='$url_foto'" : '';
+    if ($url_foto) {
+        $foto_sql = ", url_foto_produk='$url_foto'";
+    } else {
+        $foto_sql = '';
+    }
     $conn->query("UPDATE produk SET id_kategori=$id_kategori, nama_produk='$nama', warna='$warna',
                   deskripsi_produk='$deskripsi', harga=$harga, status='$status' $foto_sql
                   WHERE id_produk=$id");

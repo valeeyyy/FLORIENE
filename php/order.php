@@ -35,7 +35,7 @@ if ($note !== '') {
     $catatan .= ' | Notes: ' . $note;
 }
 $catatan = $conn->real_escape_string($catatan);
-\
+
 if ($tanggal) {
     $tanggal_sql = "'$tanggal'"; 
 } else {
