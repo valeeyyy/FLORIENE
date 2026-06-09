@@ -37,9 +37,9 @@ if ($note !== '') {
 $catatan = $conn->real_escape_string($catatan);
 
 if ($tanggal) {
-    $tanggal_sql = "'$tanggal'"; 
+    $tanggal_sql = "'$tanggal'";
 } else {
-    $tanggal_sql = 'NULL'; 
+    $tanggal_sql = 'NULL';
 }
 
 $conn->query("INSERT INTO pesanan (id_user, status, total_harga, tanggal_pengiriman, catatan)

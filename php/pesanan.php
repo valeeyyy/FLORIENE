@@ -54,4 +54,3 @@ $conn->close();
 header("Location: ../admin.php?section=orders&msg=$msg");
 exit();
 ?>
-
