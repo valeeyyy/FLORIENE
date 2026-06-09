@@ -1,112 +1,200 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login & Register - Floriene</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config = { corePlugins: { preflight: false } };</script>
-<link rel="stylesheet" href="css/shared.css">
-</head>
-<body>
-<div id="navbar-root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login & Register - Floriene</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { corePlugins: { preflight: false } };
+    </script>
+    <link rel="stylesheet" href="css/shared.css" />
+  </head>
+  <body>
+    <div id="navbar-root"></div>
 
-<main class="auth-page">
-  <div class="auth-wrap">
-    <div class="auth-card">
+    <main class="auth-page">
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <div class="auth-logo-row">
+            <img src="img/logo.jpeg" alt="Floriene" />
+          </div>
+          <h2 class="auth-title" id="auth-title">Selamat Datang</h2>
+          <p class="auth-sub" id="auth-sub">Masuk ke akun Floriene kamu.</p>
 
-      <div class="auth-logo-row">
-        <img src="img/logo.jpeg" alt="Floriene">
+          <div class="flex gap-1 p-1 mb-7 rounded-[10px] bg-[#FFF5F8]">
+            <button class="auth-tab active" onclick="gantTab('login')">
+              Sign In
+            </button>
+            <button class="auth-tab" onclick="gantTab('register')">
+              Register
+            </button>
+          </div>
+
+          <div
+            id="pesan-error"
+            style="
+              display: none;
+              background: #fee2e2;
+              color: #991b1b;
+              padding: 10px 14px;
+              border-radius: 8px;
+              font-size: 13px;
+              margin-bottom: 14px;
+            "
+          ></div>
+          <div
+            id="pesan-sukses"
+            style="
+              display: none;
+              background: #d1fae5;
+              color: #065f46;
+              padding: 10px 14px;
+              border-radius: 8px;
+              font-size: 13px;
+              margin-bottom: 14px;
+            "
+          ></div>
+
+          <form id="form-login" method="POST" action="php/auth.php">
+            <input type="hidden" name="aksi" value="login" />
+            <div class="fg">
+              <label for="l-identifier">Email atau Username</label>
+              <input
+                type="text"
+                name="identifier"
+                id="l-identifier"
+                placeholder="email@kamu.com"
+                required
+              />
+            </div>
+            <div class="fg">
+              <label for="l-password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="l-password"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-submit">Masuk</button>
+            <p class="auth-switch">
+              Belum punya akun?
+              <a onclick="gantTab('register')" style="cursor: pointer"
+                >Daftar di sini</a
+              >
+            </p>
+          </form>
+
+          <form
+            id="form-register"
+            method="POST"
+            action="php/auth.php"
+            style="display: none"
+          >
+            <input type="hidden" name="aksi" value="register" />
+            <div class="fg">
+              <label for="r-nama">Nama Lengkap</label>
+              <input
+                type="text"
+                name="nama"
+                id="r-nama"
+                placeholder="Nama lengkap kamu"
+                required
+              />
+            </div>
+            <div class="fg">
+              <label for="r-hp">No. WhatsApp</label>
+              <input
+                type="tel"
+                name="nomor_hp"
+                id="r-hp"
+                placeholder="08xx xxxx xxxx"
+              />
+            </div>
+            <div class="fg">
+              <label for="r-email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="r-email"
+                placeholder="email@kamu.com"
+                required
+              />
+            </div>
+            <div class="fg">
+              <label for="r-password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="r-password"
+                placeholder="Minimal 6 karakter"
+                required
+                minlength="6"
+              />
+            </div>
+            <button type="submit" class="btn-submit">Daftar</button>
+            <p class="auth-switch">
+              Sudah punya akun?
+              <a onclick="gantTab('login')" style="cursor: pointer"
+                >Masuk di sini</a
+              >
+            </p>
+          </form>
+        </div>
       </div>
-      <h2 class="auth-title" id="auth-title">Selamat Datang</h2>
-      <p class="auth-sub" id="auth-sub">Masuk ke akun Floriene kamu.</p>
+    </main>
 
-      <div class="flex gap-1 p-1 mb-7 rounded-[10px] bg-[#FFF5F8]">
-        <button class="auth-tab active" onclick="gantTab('login')">Sign In</button>
-        <button class="auth-tab" onclick="gantTab('register')">Register</button>
-      </div>
+    <footer class="footer">
+      <div class="footer-brand">Floriene</div>
+      <p class="footer-copy">© 2026 Floriene Surabaya</p>
+    </footer>
 
-      <div id="pesan-error" style="display:none;background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;"></div>
-      <div id="pesan-sukses" style="display:none;background:#d1fae5;color:#065f46;padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:14px;"></div>
+    <script src="js/shared.js"></script>
+    <script>
+      document.getElementById("navbar-root").innerHTML = renderNavbar("auth");
 
-      <form id="form-login" method="POST" action="php/auth.php">
-        <input type="hidden" name="aksi" value="login">
-        <div class="fg">
-          <label for="l-identifier">Email atau Username</label>
-          <input type="text" name="identifier" id="l-identifier" placeholder="email@kamu.com" required>
-        </div>
-        <div class="fg">
-          <label for="l-password">Password</label>
-          <input type="password" name="password" id="l-password" placeholder="••••••••" required>
-        </div>
-        <button type="submit" class="btn-submit">Masuk</button>
-        <p class="auth-switch">Belum punya akun? <a onclick="gantTab('register')" style="cursor:pointer;">Daftar di sini</a></p>
-      </form>
+      function gantTab(tab) {
+        var isLogin = tab === "login";
+        document.getElementById("form-login").style.display = isLogin
+          ? ""
+          : "none";
+        document.getElementById("form-register").style.display = isLogin
+          ? "none"
+          : "";
+        document.getElementById("auth-title").textContent = isLogin
+          ? "Selamat Datang"
+          : "Buat Akun Baru";
+        document.getElementById("auth-sub").textContent = isLogin
+          ? "Masuk ke akun Floriene kamu."
+          : "Daftar gratis dan mulai kumpulkan poin!";
+        document.querySelectorAll(".auth-tab").forEach(function (t, i) {
+          t.classList.toggle("active", (i === 0) === isLogin);
+        });
+      }
 
-      <form id="form-register" method="POST" action="php/auth.php" style="display:none;">
-        <input type="hidden" name="aksi" value="register">
-        <div class="fg">
-          <label for="r-nama">Nama Lengkap</label>
-          <input type="text" name="nama" id="r-nama" placeholder="Nama lengkap kamu" required>
-        </div>
-        <div class="fg">
-          <label for="r-hp">No. WhatsApp</label>
-          <input type="tel" name="nomor_hp" id="r-hp" placeholder="08xx xxxx xxxx">
-        </div>
-        <div class="fg">
-          <label for="r-email">Email</label>
-          <input type="email" name="email" id="r-email" placeholder="email@kamu.com" required>
-        </div>
-        <div class="fg">
-          <label for="r-password">Password</label>
-          <input type="password" name="password" id="r-password" placeholder="Minimal 6 karakter" required minlength="6">
-        </div>
-        <button type="submit" class="btn-submit">Daftar</button>
-        <p class="auth-switch">Sudah punya akun? <a onclick="gantTab('login')" style="cursor:pointer;">Masuk di sini</a></p>
-      </form>
-
-    </div>
-  </div>
-</main>
-
-<footer class="footer">
-  <div class="footer-brand">Floriene</div>
-  <p class="footer-copy">© 2026 Floriene Surabaya</p>
-</footer>
-
-<script src="js/shared.js"></script>
-<script>
-  document.getElementById('navbar-root').innerHTML = renderNavbar('auth');
-
-  function gantTab(tab) {
-    var isLogin = tab === 'login';
-    document.getElementById('form-login').style.display    = isLogin ? '' : 'none';
-    document.getElementById('form-register').style.display = isLogin ? 'none' : '';
-    document.getElementById('auth-title').textContent = isLogin ? 'Selamat Datang' : 'Buat Akun Baru';
-    document.getElementById('auth-sub').textContent   = isLogin ? 'Masuk ke akun Floriene kamu.' : 'Daftar gratis dan mulai kumpulkan poin!';
-    document.querySelectorAll('.auth-tab').forEach(function(t, i) {
-      t.classList.toggle('active', (i === 0) === isLogin);
-    });
-  }
-
-  var params = new URLSearchParams(window.location.search);
-  if (params.get('error') === '1') {
-    var el = document.getElementById('pesan-error');
-    el.textContent = 'Email/username atau password salah.';
-    el.style.display = 'block';
-  }
-  if (params.get('error') === 'email_exists') {
-    var el = document.getElementById('pesan-error');
-    el.textContent = 'Email sudah terdaftar. Silakan login.';
-    el.style.display = 'block';
-    gantTab('login');
-  }
-  if (params.get('success') === '1') {
-    var el = document.getElementById('pesan-sukses');
-    el.textContent = 'Akun berhasil dibuat! Silakan login.';
-    el.style.display = 'block';
-  }
-</script>
-</body>
+      var params = new URLSearchParams(window.location.search);
+      if (params.get("error") === "1") {
+        var el = document.getElementById("pesan-error");
+        el.textContent = "Email/username atau password salah.";
+        el.style.display = "block";
+      }
+      if (params.get("error") === "email_exists") {
+        var el = document.getElementById("pesan-error");
+        el.textContent = "Email sudah terdaftar. Silakan login.";
+        el.style.display = "block";
+        gantTab("login");
+      }
+      if (params.get("success") === "1") {
+        var el = document.getElementById("pesan-sukses");
+        el.textContent = "Akun berhasil dibuat! Silakan login.";
+        el.style.display = "block";
+      }
+    </script>
+  </body>
 </html>

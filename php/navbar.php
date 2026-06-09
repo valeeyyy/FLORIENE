@@ -1,22 +1,18 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
-if (isset($nav_active)) {
-    $nav_active = $nav_active;
-} else {
-    $nav_active = '';
-}
+$nav_active = $nav_active ?? '';
 $nav_links = [
-    ['href' => 'index.html',        'label' => 'Home',     'key' => 'home'],
-    ['href' => 'about.html',        'label' => 'About',    'key' => 'about'],
-    ['href' => 'index.html#produk', 'label' => 'Products', 'key' => 'products'],
-    ['href' => 'index.html#loyalty','label' => 'Loyalty',  'key' => 'loyalty'],
+  ['href' => 'index.html', 'label' => 'Home', 'key' => 'home'],
+  ['href' => 'about.html', 'label' => 'About', 'key' => 'about'],
+  ['href' => 'index.html#produk', 'label' => 'Products', 'key' => 'products'],
+  ['href' => 'index.html#loyalty', 'label' => 'Loyalty', 'key' => 'loyalty'],
 ];
 $logged_in = isset($_SESSION['id_user']);
-$nav_nama  = $_SESSION['nama'] ?? 'User';
-$nav_role  = $_SESSION['role'] ?? '';
-$dash_href  = $nav_role === 'admin' ? 'admin.php' : 'profile.php';
+$nav_nama = $_SESSION['nama'] ?? 'User';
+$nav_role = $_SESSION['role'] ?? '';
+$dash_href = $nav_role === 'admin' ? 'admin.php' : 'profile.php';
 $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
 ?>
 <nav class="navbar" id="navbar">
@@ -26,10 +22,11 @@ $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
   </a>
   <button class="nav-hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="nav-links">
+
     <?php
     $class_home = '';
     if ($nav_active === 'home') {
-        $class_home = 'active';
+      $class_home = 'active';
     }
     ?>
     <li><a href="index.html" class="<?php echo $class_home; ?>">Home</a></li>
@@ -37,7 +34,7 @@ $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
     <?php
     $class_about = '';
     if ($nav_active === 'about') {
-        $class_about = 'active';
+      $class_about = 'active';
     }
     ?>
     <li><a href="about.html" class="<?php echo $class_about; ?>">About</a></li>
@@ -45,7 +42,7 @@ $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
     <?php
     $class_products = '';
     if ($nav_active === 'products') {
-        $class_products = 'active';
+      $class_products = 'active';
     }
     ?>
     <li><a href="index.html#produk" class="<?php echo $class_products; ?>">Products</a></li>
@@ -53,13 +50,15 @@ $dash_label = $nav_role === 'admin' ? 'View Dashboard' : 'My Dashboard';
     <?php
     $class_loyalty = '';
     if ($nav_active === 'loyalty') {
-        $class_loyalty = 'active';
+      $class_loyalty = 'active';
     }
     ?>
-<li><a href="index.html#loyalty" class="<?php echo $class_loyalty; ?>">Loyalty</a></li>
+    <li><a href="index.html#loyalty" class="<?php echo $class_loyalty; ?>">Loyalty</a></li>
+    
     <?php if ($logged_in): ?>
       <li class="nav-mobile-login">
-        <span style="display:block;padding:12px;color:var(--muted);font-size:13px;">Hi, <?= htmlspecialchars($nav_nama) ?></span>
+        <span style="display:block;padding:12px;color:var(--muted);font-size:13px;">Hi,
+          <?= htmlspecialchars($nav_nama) ?></span>
         <a href="<?= $dash_href ?>" style="display:block;"><?= $dash_label ?></a>
         <a href="php/auth.php?aksi=logout" style="display:block;">Logout</a>
       </li>
